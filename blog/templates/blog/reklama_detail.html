@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>{{reklama.ime}} - {{reklama.oglasivac}} u ul. {{reklama.zgrada}} </h1>
+
+    <div>
+        <p>
+            Mesecna pretplata: {{reklama.mesecniIznos}}
+        </p>
+
+        <h2>Racuni za ovu reklamu:</h2>
+        {% for racun in reklama.racunireklama.all %}
+                <p><a class="mr-2" href="{% url 'racunireklama-detail' racun.id %}">{{ racun }}</a></p>
+        {% endfor %}
+    </div>
+{% endblock content %}

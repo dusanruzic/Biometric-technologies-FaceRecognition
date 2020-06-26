@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <h1> Oglasivaci</h1>
+
+  {% for oglasivac in oglasivaci %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+          <h1> <a class="mr-2" href="{% url 'oglasivac-detail' oglasivac.id %}">{{ oglasivac.imePrezime}}</a> </h1>
+          
+      </article>
+  {% endfor %}
+{% endblock content %}

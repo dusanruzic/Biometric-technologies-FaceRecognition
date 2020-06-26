@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <form action= {% url 'zgrada-list' %} method="GET">
+      <input id="ulica" type="text" name="ulica" placeholder="Unesi ulicu zgrade" class="form-control">
+      <input type="submit" value="Pretrazi" class="btn btn-outline-info">
+    </form> 
+    <h1> Sve postojece zgrade</h1>
+
+    {% for zgrada in zgrade %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+             <h1> <a class="mr-2" href="{% url 'zgrada-detail' zgrada.id %}">{{ zgrada.ulica}} {{ zgrada.broj }}</a> </h1>
+            
+        </article>
+    {% endfor %}
+{% endblock content %}

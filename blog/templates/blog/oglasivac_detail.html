@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>{{oglasivac.imePrezime}} </h1>
+
+    <div>
+        <h2>Reklame:</h2>
+        {% for reklama in oglasivac.reklame.all %}
+                <p><a class="mr-2" href="{% url 'reklama-detail' reklama.id %}">{{ reklama }}</a></p>
+        {% endfor %}
+    </div>
+{% endblock content %}

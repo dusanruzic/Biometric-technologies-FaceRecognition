@@ -1,0 +1,32 @@
+{%  extends 'blog/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register page</title>
+</head>
+<body>
+
+    <h1>Register</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for polje in form %}
+            {{ polje.label_tag }}
+
+            {% render_field polje class="form-control-sm" %}
+
+            {{ polje.help_text }}
+            <hr>
+        {% endfor %}
+
+        Greske: {{ form.errors }}
+
+        <input type="submit" name="Create User" class="btn btn-info">
+    </form>
+</body>
+</html>
+
+{% endblock %}

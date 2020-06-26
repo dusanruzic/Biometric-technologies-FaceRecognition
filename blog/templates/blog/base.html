@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+
+
+    {% if title %}
+        <title>Upravnik BG 011 - {{ title }}</title>
+    {% else %}
+        <title>Upravnik BG 011</title>
+    {% endif %}
+</head>
+<body>
+    <style>
+
+        body{
+            background-color: rgba(40, 0, 0, 0.79) !important;
+            background-image: url("../../static/blog/beograd.jpg");
+             background-repeat: repeat-y;
+             height:800px;
+             background-size: 100% 100%;
+            background-blend-mode: color;
+        }
+        li a{
+            color:#d8757e;
+        }
+
+    </style>
+    <header class="site-header" id="header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'zgrada-list' %}">Zgrade</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              {% if request.user.is_authenticated %}
+              <a class="nav-item nav-link" href="{% url 'oglasivac-list' %}">Oglasivaci</a>
+              <a class="nav-item nav-link" href="{% url 'reklama-list' %}">Reklame</a>  
+              <a class="nav-item nav-link" href="{% url 'stanar-list' %}">Stanari</a>
+              <a class="nav-item nav-link" href="{% url 'blink' %}">Blink-test</a>              
+              <a class="nav-item nav-link" href="{% url 'blinkstat' %}">Blink-statistika</a>              
+              {% endif %}
+  
+            </div>
+
+            
+            <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                
+                
+              {% endif %}
+            </div>
+            
+          </div>
+        </div>
+
+        {% if request.user.is_authenticated %}
+
+        <span class="text-white">Zdravo, {{ request.user }}</span>
+        <span class="text-white" style="margin-left: 10px"><a href="{% url 'logout' %}">Odjavi se</a></span>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-sm btn-success">Log in here!</a>
+        {% endif %}
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+        <!--
+        <div class="col-md-4">
+          <div class="content-section2">
+            
+            <p id="naslovdesno">Dodatne informacije
+              <ul class="list-group">
+                
+                <li class="list-group-item list-group-item-light" id="liprvi" style="color:#d8757e;"><a href="/rest/"> API dokumentacija</a></li>
+
+              </ul>
+            </p>
+          </div>
+          -->
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+</body>
+</html>

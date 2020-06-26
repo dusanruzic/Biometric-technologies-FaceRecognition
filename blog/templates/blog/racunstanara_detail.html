@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>{{racunstanara.stanar}} za period {{racunstanara.period}}</h1>
+
+    <div>
+        <p>
+            Iznos: {{racunstanara.iznos}}
+        </p>
+        <p>
+            Uplatio racun? : {% if racunstanara.isPlatio %} Jeste {% else %} Nije {% endif %}
+        </p>
+        <p>
+            Napomena: {{ racunstanara.napomena }}
+        </p>
+        
+    </div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>{{zgrada.ulica}} {{zgrada.broj}}</h1>
+
+    <div>
+        <p><a class="mr-2" href="{% url 'kreirajracune' zgrada.id %}"> Kreiraj racune za stanare ove zgrade </a></p>
+    </div>
+    <div>
+        <h2>Stanari</h2>
+        {% for stanar in zgrada.stanari.all %}
+                <p><a class="mr-2" href="{% url 'stanar-detail' stanar.id %}">{{ stanar}}</a></p>
+        {% endfor %}
+    </div>
+
+    <div>
+        <h2>Reklame</h2>
+        {% for reklama in zgrada.reklame.all %}
+                <p><a class="mr-2" href="{% url 'reklama-detail' reklama.id %}">{{ reklama }}</a></p>
+        {% endfor %}
+    </div>
+{% endblock content %}

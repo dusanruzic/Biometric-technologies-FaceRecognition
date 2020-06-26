@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1>{{stanar.prezime}} - stan {{stanar.brojStana}}</h1>
+
+    <div>
+        <p>
+            Mesecni iznos: {{stanar.mesecniIznos}}
+        </p>
+        
+        <p>
+            Dugovanje: {{stanar.dugovanje}}
+        </p>
+        
+        <h2>Prethodni racuni:</h2>
+        {% for racun in stanar.racuni.all %}
+                <p><a class="mr-2" href="{% url 'racunistanari-detail' racun.id %}">{{ racun }}</a></p>
+        {% endfor %}
+    </div>
+{% endblock content %}

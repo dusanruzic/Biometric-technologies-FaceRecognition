@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <form action= {% url 'stanar-list' %} method="GET">
+      <input id="prezime" type="text" name="prezime" placeholder="Unesi prezime stanara" class="form-control">
+
+      <div class="sortiranje">
+        <span>Sortiraj po:</span>
+      
+        <!--
+        <button class="btn btn-success"  type="button" name="blaa"><ion-icon name="arrow-dropup-circle"></ion-icon></button>
+        <button class="btn btn-danger" type="button"><ion-icon name="arrow-dropdown-circle"></ion-icon></button>
+        -->
+
+        <select name="sort" id="sort" class="form-control-sm">
+          <option value="iznosDugovanjaOpadajuce">Iznos dugovanja opadajuce</option>
+          <option value="iznosDugovanjaRastuce">Iznos dugovanja rastuce</option>
+          <option value="mesecniIznosOpadajuce">Mesecni iznos placanja opadajuce</option>
+          <option value="mesecniIznosRastuce">Mesecni iznos placanja rastuce</option>
+        </select>
+      
+
+      <input type="submit" value="Pretrazi" class="btn btn-lg btn-outline-info">
+
+      </div>
+
+    </form>
+    <hr>
+
+    {% for stanar in stanari %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+             <h1> <a class="mr-2" href="{% url 'stanar-detail' stanar.id %}">{{ stanar }}</a> </h1>
+            </div>
+            <p>
+                <ion-icon name="arrow-dropright"></ion-icon> Duguje: {{ stanar.dugovanje }}
+            </p>
+            <p>
+                <ion-icon name="arrow-dropright"></ion-icon> Mesecni iznos: {{ stanar.mesecniIznos }}
+            </p>
+          </div>
+          
+        </article>
+      
+    {% endfor %}
+{% endblock content %}
